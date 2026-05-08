@@ -7,7 +7,6 @@ d = dict()
 
 # mit Inhalt -----
 
-
 person = {"name": "John", "age": 25, "car": "VW Golf", "city": "Stockholm"}
 
 person = {"name": "John",
