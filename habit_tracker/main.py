@@ -53,6 +53,14 @@ with open(FILE_PATH, "r") as f:
 
 # Eigentliche App-Ausführung
 user_input = ""
+possible_options = ["1", "2", "3", "4", "5"]
+function_keys = {
+    "1": add_habit,
+    "2": complete_habit,
+    "3": show_habits,
+    "4": delete_habit,
+}
+
 while user_input != "5":
 
     user_input = input("""Habit Tracker App Menu:
@@ -62,18 +70,9 @@ while user_input != "5":
     4 - Habit löschen
     5 - Beenden
     Was würdest du gerne tun? >> """)
-
-    possible_options = ["1", "2", "3", "4", "5"]
+   
     if user_input not in possible_options:
         print("Invalid input.")
-
-    function_keys = {
-        "1": add_habit,
-        "2": complete_habit,
-        "3": show_habits,
-        "4": delete_habit,
-        "5": "quit"
-    }
 
     if user_input in ["1", "2", "4"]:
         habit = input("Welche Habit möchtest du bearbeiten? >> ")
