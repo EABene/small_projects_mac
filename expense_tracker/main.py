@@ -1,8 +1,7 @@
 import sqlite3
-import datetime 
+import datetime
 
 today = str(datetime.date.today())
-print(today)
 
 # Verbindung öffnen (erstellt .db Datei falls nicht existiert)
 conn = sqlite3.connect("expenses.db")
@@ -21,7 +20,7 @@ cursor.execute("""
     )
 """)
 
-
+# Funktionen
 def view_expenses():
     # Just print table
     print("ID   |Expense             |Amount    |Category       |Date")
@@ -59,9 +58,13 @@ def del_expense():
     conn.commit()
 
 
-
 def sum_category():
-    pass
+    category = input("Category to sum up: >> ")
+    cursor.execute("""
+        SELECT SUM(amount) FROM expenses WHERE category = ?
+        """, (category,))
+    result = cursor.fetchone()
+    print(f"Total amount of category {category}: {result[0]}")
 
 
 
@@ -91,8 +94,6 @@ while user_input != '5':
     else: print("Invalid input.")
 
 print("Programm erfolgreich beendet.")
-
-
 
 
 
