@@ -67,10 +67,15 @@ def sum_category():
         SELECT SUM(amount) FROM expenses WHERE category = ?
         """, (category,))
     result = cursor.fetchone()
-    print(f"Total amount of category {category}: {result[0]}")
+    print(f"Total expenses of category {category}: {result[0]}")
 
 def sum_all():
-    pass
+    cursor.execute("""
+        SELECT SUM(amount) FROM expenses
+        """)
+    result = cursor.fetchone()
+    print(f"Total expenses are {result[0]}")
+
 
 def sum_month():
     pass
@@ -85,7 +90,9 @@ keys = {
     '1': view_expenses,
     '2': add_expense,
     '3': del_expense,
-    '4': sum_category,
+    '4': sum_all,
+    '5': sum_month,
+    '6': sum_category,
     '8': info,
 }
 
@@ -93,11 +100,11 @@ user_input = ""
 
 while user_input != '9':
     user_input = input("""-----Expense Tracker-----
-1: Ausgaben anzeigen            6: Alles zusammenfassen
-2: Ausgabe hinzufügen           7: Nach Monat zusammenfassen
-3: Ausgabe löschen              8: Info
-4: Kategorie zusammenfassen     9: Programm BEENDEN
-5: 
+1: View expense                 6: Sum category
+2: Add expense                  7: ---
+3: Delete expense               8: Info
+4: Sum all expenses             9: EXIT program
+5: Sum of month this year
 -------------------------
 >>> """)
     if user_input in ['1', '2', '3', '4', '5', '6', '7', '8']:
@@ -106,7 +113,7 @@ while user_input != '9':
         break
     else: print("Invalid input.")
 
-print("Programm erfolgreich beendet.")
+print("EXIT successful.")
 
 
 
