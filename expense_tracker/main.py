@@ -45,6 +45,9 @@ def add_expense():
     # Änderungen speichern
     conn.commit()
 
+def update_expense():
+    pass
+
 def del_expense():
     # User input erfragen
     id = input("ID of expense to delete: >> ")
@@ -66,6 +69,15 @@ def sum_category():
     result = cursor.fetchone()
     print(f"Total amount of category {category}: {result[0]}")
 
+def sum_all():
+    pass
+
+def sum_month():
+    pass
+
+def info():
+    print("Here will be a manual for the CLI App\n")
+
 
 
 # Eigentliches Programm
@@ -73,23 +85,24 @@ keys = {
     '1': view_expenses,
     '2': add_expense,
     '3': del_expense,
-    '4': sum_category
+    '4': sum_category,
+    '8': info,
 }
 
 user_input = ""
 
-while user_input != '5':
+while user_input != '9':
     user_input = input("""-----Expense Tracker-----
-1: Ausgaben anzeigen
-2: Ausgabe hinzufügen
-3: Ausgabe löschen
-4: Kategorie zusammenfassen
-5: Programm BEENDEN
+1: Ausgaben anzeigen            6: Alles zusammenfassen
+2: Ausgabe hinzufügen           7: Nach Monat zusammenfassen
+3: Ausgabe löschen              8: Info
+4: Kategorie zusammenfassen     9: Programm BEENDEN
+5: 
 -------------------------
 >>> """)
-    if user_input in ['1', '2', '3', '4']:
+    if user_input in ['1', '2', '3', '4', '5', '6', '7', '8']:
         keys[user_input]()
-    elif user_input == '5':
+    elif user_input == '9':
         break
     else: print("Invalid input.")
 
