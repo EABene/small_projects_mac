@@ -1,3 +1,6 @@
+# TODO: write update function
+# make CLI app to call functions directly on the terminal
+
 import sqlite3
 import datetime
 
@@ -76,9 +79,14 @@ def sum_all():
     result = cursor.fetchone()
     print(f"Total expenses are {result[0]}")
 
-
 def sum_month():
-    pass
+    month = input("What month to sum up? >> ")
+    year = today[:4]
+    cursor.execute("""
+        SELECT SUM(amount) FROM expenses WHERE date LIKE ?
+        """, (f"{year}-{month}%",))
+    result = cursor.fetchone()
+    print(f"Expenses of month {month} are: {result[0]}")
 
 def info():
     print("Here will be a manual for the CLI App\n")
@@ -100,7 +108,7 @@ user_input = ""
 
 while user_input != '9':
     user_input = input("""-----Expense Tracker-----
-1: View expense                 6: Sum category
+1: View expenses                6: Sum category
 2: Add expense                  7: ---
 3: Delete expense               8: Info
 4: Sum all expenses             9: EXIT program
