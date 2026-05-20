@@ -49,7 +49,12 @@ def add_expense():
     conn.commit()
 
 def update_expense():
-    pass
+    id = input("Which id do you want to update? >> ")
+    column = input("Which column do you want to change? >> ")
+    if column in ["Expense", "Amount", "Category", "Date"]:
+        pass
+    else: print(f"Column {column} does not exist.")
+
 
 def del_expense():
     # User input erfragen
