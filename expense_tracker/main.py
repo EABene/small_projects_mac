@@ -1,6 +1,3 @@
-# TODO: write update function
-# make CLI app to call functions directly on the terminal
-
 import sqlite3
 import datetime
 
@@ -24,9 +21,18 @@ cursor.execute("""
 """)
 
 # Funktionen
+def show_functions():
+    print("""---------------Expense Tracker-----------------
+1: View expenses                6: Sum category
+2: Add expense                  7: Update expense
+3: Delete expense               8: Info
+4: Sum all expenses             9: EXIT program
+5: Sum of month this year       0: Show functions 
+--------------------------------------------------""")
+
 def view_expenses():
     # Just print table
-    print("ID   |Expense             |Amount    |Category       |Date")
+    print("ID   |Description         |Amount    |Category       |Date")
     cursor.execute("SELECT * FROM expenses")
     rows = cursor.fetchall()
     for row in rows:
@@ -45,14 +51,19 @@ def add_expense():
         VALUES (?, ?, ?, ?)
     """, (description, amount, category, today))
 
+    print("Expense added.")
+
     # Änderungen speichern
     conn.commit()
 
 def update_expense():
     id = input("Which id do you want to update? >> ")
-    column = input("Which column do you want to change? >> ")
-    if column in ["Expense", "Amount", "Category", "Date"]:
-        pass
+    column = input("Which column do you want to change? >> ").lower()
+    if column in ["description", "amount", "category", "date"]:
+        updated_value = input("What's the new cell value? >> ")        
+    # SQL Befehl zum updaten
+        cursor.execute(f"UPDATE expenses SET {column} = ? WHERE id = ?", (updated_value, id))
+        conn.commit()
     else: print(f"Column {column} does not exist.")
 
 
@@ -106,29 +117,25 @@ keys = {
     '4': sum_all,
     '5': sum_month,
     '6': sum_category,
+    '7': update_expense,
     '8': info,
 }
 
 user_input = ""
 
+show_functions()
+
 while user_input != '9':
-    user_input = input("""-----Expense Tracker-----
-1: View expenses                6: Sum category
-2: Add expense                  7: ---
-3: Delete expense               8: Info
-4: Sum all expenses             9: EXIT program
-5: Sum of month this year
--------------------------
->>> """)
+    user_input = input("Write your command >> ")
     if user_input in ['1', '2', '3', '4', '5', '6', '7', '8']:
         keys[user_input]()
-    elif user_input == '9':
+    elif user_input == '0':
+        show_functions()
+    elif user_input in ['9', 'EXIT', 'Exit', 'exit']:
         break
     else: print("Invalid input.")
 
 print("EXIT successful.")
-
-
 
 
 # Verbindung schließen
