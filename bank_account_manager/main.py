@@ -6,6 +6,9 @@ class BankAccount:
         self.password = password
         self.balance = balance
 
+    def deposit(amount):
+        pass
+
 
 konto = BankAccount("John", "1234", "geheim", "1000€")
 print(konto.balance)
