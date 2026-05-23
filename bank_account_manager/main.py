@@ -1,3 +1,9 @@
+# TODO: CLI Menü bauen rund um das ganze
+# FIXME
+# HACK
+# NOTE
+# XXX 
+
 import datetime
 today = str(datetime.date.today())
 
@@ -8,6 +14,9 @@ class BankAccount:
         self.password = password
         self.balance = balance
         self.transaction_history = []
+
+    def __str__(self):
+        return f"Owner: {self.name} | IBAN: {self.account_number} | Balance: {self.balance}"
 
     def deposit(self, amount):
         self.balance += amount
@@ -39,16 +48,23 @@ class SavingsAccount(BankAccount):
 
 
 
+# Actual Program
+
 account = BankAccount("John Doe", "1234", "geheim", 1000)
 sparkonto = SavingsAccount("Anna Lisitsa", "5678", "geheim", 800, 0.02)
 
+
+
+print(account)
+print(sparkonto)
+
+"""
 sparkonto.deposit(800)
 sparkonto.get_balance()
 sparkonto.add_interest()
 sparkonto.get_balance()
 sparkonto.get_transaction_history()
 
-"""
 print(account.name)
 print(account.balance)
 account.deposit(50)
