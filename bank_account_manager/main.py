@@ -6,13 +6,27 @@ class BankAccount:
         self.password = password
         self.balance = balance
 
-    def deposit(amount):
-        pass
+    def deposit(self, amount):
+        self.balance += amount
+
+    def withdraw(self, amount):
+        if self.balance - amount < 0:
+            print("going lower than 0 not possible")
+        else: self.balance -= amount
+
+    def get_balance(self):
+        print(f"Current balance: € {self.balance}")
 
 
-konto = BankAccount("John", "1234", "geheim", "1000€")
-print(konto.balance)
-print(konto.name)
+
+account = BankAccount("John Doe", "1234", "geheim", 1000)
+
+print(account.name)
+print(account.balance)
+account.deposit(50)
+account.withdraw(600)
+account.get_balance()
+
 
 
 
