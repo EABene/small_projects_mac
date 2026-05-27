@@ -1,5 +1,7 @@
-To enter the Virtual Environment, you need to activate it as follows:
+# 1. Create venv(in Project Folder)
+python3 -m venv venv
 
+# 2. activate
 source venv/bin/activate
 
 Then, "(venv)" should be visible in the Terminal line.
