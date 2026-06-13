@@ -1,11 +1,20 @@
 import random
+import string
 
-eligible_signs = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q",
-                  "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H",
-                  "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y",
-                  "Z", "1", "2", "3", "4", "5", "6", "7", "8","9", "0", "!", "§", "$", "%", "&", "/",
-                  "(", ")", "?", "€", "@"]
-random.shuffle(eligible_signs)
+# Note: lowercase_letters = string.ascii_lowercase
+# Note: uppercase_letters = string.ascii_uppercase
+upper_and_lowercase_letters = string.ascii_letters
+digits = string.digits
+extra_signs = string.punctuation
+
+all_signs = upper_and_lowercase_letters + digits # optional: add extra_signs
+
+eligible_signs = []
+for sign in all_signs:
+    eligible_signs.append(sign)
+
+random.shuffle(eligible_signs) # kind of unecessary... More like superstition.
+
 
 def passgen_part():
     password_part = []
@@ -21,20 +30,28 @@ def passgen_part():
 
     return password_part_string
 
-# Start of the App
-
-user_choice = input("Do you want to generate a safe password? (y/n): ")
-if user_choice == "y":
-    user_choice = True
-else: user_choice = False
-
-# Actual app running
-
-if user_choice:
+def passgen():
     password = ""
     for loop in range(5):
         password = password + passgen_part()
     password = password[:-1]
+    return password
+
+# Start of the App
+
+user_choice = input("Do you want to generate a safe password? Type: Go! >> ")
+if user_choice == "Go!":
+    user_choice = True
+elif user_choice == "Info":
+    print("Format:\n#####-#####-#####-#####-#####")
+    user_choice = False
+else: user_choice = False
+
+
+# Actual app running
+
+if user_choice:
+    password = passgen()
     print("Your password is:", password)
 else: print("No password generated")
 
