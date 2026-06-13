@@ -37,22 +37,17 @@ def passgen():
     password = password[:-1]
     return password
 
-# Start of the App
+# App Runtime
 
 user_choice = input("Do you want to generate a safe password? Type: Go! >> ")
 if user_choice == "Go!":
-    user_choice = True
-elif user_choice == "Info":
-    print("Format:\n#####-#####-#####-#####-#####")
-    user_choice = False
-else: user_choice = False
-
-
-# Actual app running
-
-if user_choice:
-    password = passgen()
-    print("Your password is:", password)
-else: print("No password generated")
-
+    user_choice = "y"
+    while True:
+        if user_choice == "y":
+            print(passgen())
+        else:
+            print("Program exit.")
+            break
+        user_choice = input("Generate another? (y/n) >> ")
+else: print("No password generated.")
 
