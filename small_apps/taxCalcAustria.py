@@ -13,11 +13,11 @@ SOCIAL_RATE = 0.1812  # approximate employee social security contribution (18.12
 SPECIAL_PAYMENT_TAX_RATE = 0.06  # 6% flat tax on special payments (configurable)
 # Austrian progressive income tax brackets (annual taxable income) - marginal rates
 BRACKETS = [
-    (11000, 0.00),
-    (18000, 0.20),
-    (31000, 0.35),
-    (60000, 0.42),
-    (90000, 0.48),
+    (11_000, 0.00),
+    (18_000, 0.20),
+    (31_000, 0.35),
+    (60_000, 0.42),
+    (90_000, 0.48),
     (1_000_000, 0.50),
     (float("inf"), 0.55),
 ]
