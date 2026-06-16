@@ -6,6 +6,7 @@ Jedes Zeichen mit gleicher Wahrscheinlichkeit, gepicked zu werden, und jeweils F
 Am besten eine V2 schreiben
 """
 
+import secrets
 import random
 import string
 
@@ -21,14 +22,15 @@ eligible_signs = []
 for sign in all_signs:
     eligible_signs.append(sign)
 
-random.shuffle(eligible_signs) # kind of unecessary... More like superstition.
+eligible_signs = list(all_signs)
+secrets.SystemRandom().shuffle(eligible_signs) # kind of unecessary... More like superstition.
 
 
 def passgen_part():
     password_part = []
     for sign in eligible_signs:
         checker = [1, 2, 3, 4, 5]
-        check = random.choice(checker)
+        check = secrets.choice(checker)
         if check == 1:
             password_part.append(sign)
             if len(password_part) == 6:
