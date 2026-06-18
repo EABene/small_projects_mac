@@ -1,6 +1,6 @@
 """
 TODO:
-Change: Use secrets instead of random
+
 Sauberere Logik
 Jedes Zeichen mit gleicher Wahrscheinlichkeit, gepicked zu werden, und jeweils Fix UPPER, LOWER und DIGIT
 Am besten eine V2 schreiben
